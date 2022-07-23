@@ -1,5 +1,5 @@
 {
-  "name": "news",
+  "name": "NewsNow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
