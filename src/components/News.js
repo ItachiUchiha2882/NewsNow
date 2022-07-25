@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Newsitem from './Newsitem'
 
 export class News extends Component {
-    articles = [
+  articles = [
     {
       "source": {
         "id": "bbc-sport",
@@ -44,11 +44,11 @@ export class News extends Component {
     }
   ];
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      articles : this.articles,
-      loading : false
+      articles: this.articles,
+      loading: false
     }
   }
 
@@ -58,21 +58,11 @@ export class News extends Component {
         <div className='container my-3'>
           <h2>Top headlines</h2>
           <div className='row'>
-            <div className="col-md-4 my-3">
-              <Newsitem title="title" description="description" imgUrl="https:////m.files.bbci.co.uk/modules/bbc-morph-sport-seo-meta/1.22.0/images/bbc-sport-logo.png"/>
-            </div>
-            <div className="col-md-4 my-3">
-              <Newsitem title="title" description="description"/>
-            </div>
-            <div className="col-md-4 my-3">
-              <Newsitem title="title" description="description"/>
-            </div>
-            <div className="col-md-4 my-3">
-              <Newsitem title="title" description="description"/>
-            </div>
-            <div className="col-md-4 my-3">
-              <Newsitem title="title" description="description"/>
-            </div>
+            {this.state.articles.map((element) => {
+              return <div className="col-md-4 my-3" key={element.url}>
+                <Newsitem title={element.title.slice(0, 40)} description={element.description.slice(0, 80)} imgUrl={element.urlToImage} newsUrl={element.url}/>
+              </div>
+            })};
           </div>
         </div>
       </>
