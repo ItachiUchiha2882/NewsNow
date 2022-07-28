@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class Newsitem extends Component {
   mystyle = {
-    height: '180px',
+    height: '250px',
   }
 
   render() {
@@ -12,7 +12,7 @@ export class Newsitem extends Component {
     return (
       <>
         <div>
-          <div className="card" style={{ width: '18rem' }}>
+          <div className="card">
             <img src={imgUrl?imgUrl:defaultImage} style={this.mystyle} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{title}</h5>
