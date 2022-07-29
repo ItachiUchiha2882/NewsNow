@@ -15,13 +15,19 @@ export class News extends Component {
     country: PropTypes.string,
     category: PropTypes.string
   }
-  constructor() {
-    super();
+
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       loading: false,
       page: 1
     }
+    document.title = `NewsNow - ${this.capitalizeFirstLetter(this.props.category)}`;
   }
 
   updateNews = async () => {
@@ -55,7 +61,7 @@ export class News extends Component {
     return (
       <>
         <div className='container my-3'>
-          <h2 style={{margin : '30px 0px'}}>NewsNow - Top headlines</h2>
+          <h2 style={{margin : '30px 0px'}}>NewsNow - Top {this.capitalizeFirstLetter(this.props.category)} headlines</h2>
           {this.state.loading && <Spinner />}
           <div className='row'>
             {/* this ensures that content is gone, when loading. */}
