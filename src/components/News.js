@@ -71,7 +71,7 @@ export class News extends Component {
             {/* this ensures that content is gone, when loading. */}
             {!this.state.loading && this.state.articles.map((element) => {
               return <div className="col-md-4 my-3" key={element.url}>
-                <Newsitem title={element.title} description={element.description} imgUrl={element.urlToImage} newsUrl={element.url} />
+                <Newsitem title={element.title} description={element.description} imgUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
               </div>
             })}
           </div>
