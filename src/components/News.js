@@ -24,8 +24,8 @@ export class News extends Component {
     }
   }
 
-  async componentDidMount() {
-    let endpoint = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=00a8ff0ea82d49c99dbecce1be532618&pageSize=${this.props.pageSize}`;
+  updateNews = async () => {
+    let endpoint = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=00a8ff0ea82d49c99dbecce1be532618&pageSize=${this.props.pageSize}&page=${this.state.page}`;
     this.setState({ loading: true });
     let data = await fetch(endpoint);
     let parsedData = await data.json();
@@ -36,29 +36,19 @@ export class News extends Component {
     });
   }
 
+  async componentDidMount() {
+    // await this.setState({page: 1});
+    this.updateNews();
+  }
+
   handlePrevClick = async () => {
-    console.log("prev");
-    let endpoint = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=00a8ff0ea82d49c99dbecce1be532618&pageSize=${this.props.pageSize}&page=${this.state.page - 1}`;
-    this.setState({ loading: true });
-    let data = await fetch(endpoint);
-    let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      page: this.state.page - 1
-    })
+    await this.setState({page: this.state.page - 1});
+    this.updateNews();
   }
 
   handleNextClick = async () => {
-    console.log("next");
-    let endpoint = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=00a8ff0ea82d49c99dbecce1be532618&pageSize=${this.props.pageSize}&page=${this.state.page + 1}`;
-    this.setState({ loading: true });
-    let data = await fetch(endpoint);
-    let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      page: this.state.page + 1,
-      loading: false
-    })
+    await this.setState({page: this.state.page + 1});
+    this.updateNews();
   }
 
   render() {
