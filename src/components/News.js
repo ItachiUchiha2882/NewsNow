@@ -8,12 +8,11 @@ export default function News(props) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [totalResults, setTotalResults] = useState(0)
+  const [totalResults, setTotalResults] = useState(0);
+
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  // document.title = `NewsNow - ${capitalizeFirstLetter(props.category)}`;
-
 
   const updateNews = async () => {
     props.setProgress(10);
@@ -30,12 +29,15 @@ export default function News(props) {
   }
 
   useEffect( () => {
+    document.title = `NewsNow - ${capitalizeFirstLetter(props.category)}`;
+    // next comment removes error of dependency of `useEffect`.
     updateNews();
+    // eslint-disable-next-line
   }, [])
   
   const fetchMoreData = async () => {
-    setPage(page + 1);
     let endpoint = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page+1}`;
+    setPage(page + 1);
     let data = await fetch(endpoint);
     let parsedData = await data.json();
     setArticles(articles.concat(parsedData.articles));
@@ -44,7 +46,7 @@ export default function News(props) {
   return (
     <>
       <div className='my-3'>
-        <h2 style={{ margin: '30px 70px' }}>NewsNow - Top {capitalizeFirstLetter(props.category)} headlines</h2>
+        <h2 style={{ margin: '30px 70px', marginTop: '70px' }}>NewsNow - Top {capitalizeFirstLetter(props.category)} headlines</h2>
         {loading && <Spinner />}
         <InfiniteScroll
           dataLength={articles.length}
@@ -72,7 +74,6 @@ News.defaultProps = {
   country: 'in',
   category: 'general'
 }
-
 News.propTypes = {
   pageSize: PropTypes.number,
   country: PropTypes.string,
