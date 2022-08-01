@@ -25,7 +25,6 @@ export default function App() {
         />
         <Routes>
           <Route path="/" element={<News setProgress={setProgress} apiKey={apiKey} key="home" pageSize={pageSize} country="in" category="general" />}></Route>
-          <Route path="/about" element={<News setProgress={setProgress} apiKey={apiKey} key="about" pageSize={pageSize} country="in" category="general" />}></Route>
           <Route path="/general" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general" />}></Route>
           <Route path="/business" element={<News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={pageSize} country="in" category="business" />}></Route>
           <Route path="/entertainment" element={<News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={pageSize} country="in" category="entertainment" />}></Route>

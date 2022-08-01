@@ -46,7 +46,7 @@ export default function News(props) {
   return (
     <>
       <div className='my-3'>
-        <h2 style={{ margin: '30px 70px', marginTop: '70px' }}>NewsNow - Top {capitalizeFirstLetter(props.category)} headlines</h2>
+        <h2 style={{ margin: '15px 70px', marginTop: '80px' }}>NewsNow - Top {capitalizeFirstLetter(props.category)} headlines</h2>
         {loading && <Spinner />}
         <InfiniteScroll
           dataLength={articles.length}
